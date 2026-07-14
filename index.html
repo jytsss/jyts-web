@@ -200,6 +200,13 @@
   }
   .nl-form input:focus{outline:none;border-color:var(--cyan);}
   .nl-form .btn-primary{white-space:nowrap;}
+  .nl-embed{
+    margin:36px auto 0;max-width:440px;
+  }
+  .nl-embed iframe{
+    width:100%;height:420px;border:0;display:block;
+  }
+  @media(max-width:480px){.nl-embed iframe{height:460px;}}
 
   /* COMUNIDAD + RECURSOS — two up, compacto */
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
@@ -259,7 +266,14 @@
   /* FOOTER */
   footer{padding:40px 0;}
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-  .footer-links{display:flex;gap:22px;font-size:12.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;}
+  .footer-links{display:flex;gap:18px;align-items:center;}
+  .footer-links a{
+    color:var(--text-dim);display:flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border:1px solid var(--border);border-radius:50%;
+    transition:color .15s,border-color .15s;
+  }
+  .footer-links a:hover{color:var(--cyan);border-color:var(--cyan);}
+  .footer-links svg{width:16px;height:16px;}
   .footer-sig{font-family:var(--display);font-weight:800;color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:0.5px;}
 </style>
 </head>
@@ -267,7 +281,7 @@
 
 <nav>
   <div class="wrap">
-    <div class="logo">JYTS</div>
+    <a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">JYTS</a>
     <div class="navlinks">
       <a href="#curso">Curso</a>
       <a href="#quien-soy">Quién soy</a>
@@ -338,7 +352,7 @@
         <li>Certificado de finalización</li>
       </ul>
       <div class="curso-actions">
-        <a href="#" class="btn-primary">Apuntarme al curso →</a>
+        <a href="https://jyts-ds.hotmart.host/de-0-a-ds-python-machine-learning-y-negocio" class="btn-primary" target="_blank" rel="noopener">Apuntarme al curso →</a>
         <p>Plazas limitadas — próximos cursos vía newsletter</p>
       </div>
     </div>
@@ -433,10 +447,9 @@ function showTab(name){
     <div class="eyebrow-sm" style="font-size:18px;letter-spacing:1px;">Newsletter</div>
     <h2 style="white-space:nowrap;font-size:clamp(22px,7.5vw,48px);">Todo señal, cero ruido.</h2>
     <p class="sec-sub">Cada semana: un proyecto real, conceptos de estadística y ML, reflexiones, consejos para tu carrera, análisis de datos, noticias y actualidad, avisos importantes de la comunidad y mucho más.</p>
-    <form class="nl-form">
-      <input type="email" placeholder="tu@email.com" required>
-      <button type="submit" class="btn-primary">Suscribirme →</button>
-    </form>
+    <div class="nl-embed">
+      <iframe src="https://0d7ed939.sibforms.com/serve/MUIFAHjsmq3YvL5zTpNoyXEln5D6NXRNLK09SxzoPz64aYxoGyQfPyF4uLtrDQzSjIfYB8lCgwtR-ge6NxE8AyxmhBdwue7lbT81iSjMt4J0aHXCEaaTumYJEMGztX8GIIo4SL_6GqZzkwdXR1Qavc-V31METLgA-lQoD2drl1k99dqbUYSusYqahI_dA54FtK-I7Rg8vV38VasKfA==" title="Suscripción newsletter JYTS" scrolling="no" allowtransparency="true"></iframe>
+    </div>
   </div>
 </section>
 
@@ -511,9 +524,15 @@ function showTab(name){
 <footer>
   <div class="wrap footer-row">
     <div class="footer-links">
-      <a href="#">Instagram</a>
-      <a href="#">TikTok</a>
-      <a href="#">GitHub</a>
+      <a href="https://instagram.com/jyts__" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@jyts__" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 1.9 1.6 3.4 3.5 3.7v2.6c-1.3 0-2.6-.4-3.5-1.1v6.4c0 3-2.4 5.4-5.4 5.4S5.7 17.6 5.7 14.6s2.4-5.4 5.4-5.4c.3 0 .6 0 .9.1v2.7a2.7 2.7 0 1 0 1.9 2.6V3h2.6z"/></svg>
+      </a>
+      <a href="https://github.com/jytsss" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.6 2 12.1c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.6-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 4.9 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.6 0 3.8-2.3 4.6-4.6 4.9.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.3 6.8-5.1 6.8-9.5C22 6.6 17.5 2 12 2z"/></svg>
+      </a>
     </div>
     <div class="footer-sig">Jorge C. Rella</div>
   </div>
