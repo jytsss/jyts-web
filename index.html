@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JYTS — Data Science con criterio senior</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A;
+    --bg-panel:#141414;
+    --border:#262626;
+    --cyan:#3FD8D8;
+    --text:#F5F5F3;
+    --text-dim:#9A9A96;
+    --text-faint:#5C5C58;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Archivo', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--cyan);color:#0A0A0A;}
+
+  /* NAV */
+  nav{
+    border-bottom:1px solid var(--border);
+    position:sticky;top:0;z-index:50;background:rgba(10,10,10,0.92);
+    backdrop-filter:blur(8px);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .logo{font-family:var(--display);font-weight:900;font-size:19px;letter-spacing:1px;}
+  .navlinks{display:flex;gap:36px;font-size:13px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-dim);font-weight:500;}
+  .navlinks a{transition:color .15s;}
+  .navlinks a:hover{color:var(--text);}
+  .nav-cta{
+    font-size:13px;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;
+    border:1px solid var(--text);padding:10px 20px;
+  }
+  .nav-cta:hover{background:var(--text);color:var(--bg);}
+  @media(max-width:760px){.navlinks{display:none;}}
+
+  /* HERO */
+  .hero{padding:100px 0 80px;text-align:center;border-bottom:1px solid var(--border);}
+  .eyebrow{
+    font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);
+    font-weight:600;margin-bottom:28px;
+  }
+  h1{
+    font-family:var(--display);font-weight:900;
+    font-size:clamp(34px,6.2vw,68px);line-height:1.02;letter-spacing:-1px;
+    text-transform:uppercase;max-width:900px;margin:0 auto;
+  }
+  h1 .accent{color:var(--cyan);}
+  .hero-sub{
+    margin:28px auto 0;font-size:17px;color:var(--text-dim);max-width:480px;line-height:1.6;
+  }
+  .hero-ctas{margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--cyan);color:#0A0A0A;font-weight:700;
+    padding:16px 32px;font-size:13px;text-transform:uppercase;letter-spacing:1px;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:opacity .15s;
+  }
+  .btn-primary:hover{opacity:0.85;}
+  .btn-outline{
+    border:1px solid var(--border);color:var(--text);
+    padding:16px 32px;font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:600;
+    transition:border-color .15s;
+  }
+  .btn-outline:hover{border-color:var(--text);}
+
+  /* VIDEO */
+  .video-section{padding-top:0;padding-bottom:64px;border-bottom:1px solid var(--border);}
+  .video-frame{
+    max-width:720px;margin:0 auto;position:relative;
+    aspect-ratio:16/9;background:var(--bg-panel);border:1px solid var(--border);
+    overflow:hidden;
+  }
+  .video-frame iframe{width:100%;height:100%;display:block;border:0;}
+  .video-caption{
+    text-align:center;margin-top:16px;font-size:13px;color:var(--text-faint);
+    text-transform:uppercase;letter-spacing:0.5px;
+  }
+
+  /* SECTION generic */
+  section{padding:80px 0;border-bottom:1px solid var(--border);}
+  .eyebrow-sm{
+    font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);
+    font-weight:600;margin-bottom:16px;
+  }
+  h2{
+    font-family:var(--display);font-weight:800;font-size:clamp(30px,4.5vw,48px);
+    text-transform:uppercase;letter-spacing:-0.5px;line-height:1.05;
+  }
+  .sec-sub{color:var(--text-dim);margin-top:16px;max-width:520px;font-size:16.5px;line-height:1.65;}
+
+  /* CURSO — bloque principal */
+  .curso-section{background:var(--bg-panel);}
+  .curso-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;}
+  .badge{
+    display:inline-block;font-family:var(--mono);font-size:11.5px;letter-spacing:0.5px;
+    color:var(--cyan);border:1px solid var(--cyan);padding:5px 12px;margin-bottom:18px;
+  }
+  .curso-price-tag{text-align:right;}
+  .price-num{font-family:var(--display);font-weight:900;font-size:44px;}
+  .price-note{font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+
+  .curso-grid{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+  @media(max-width:700px){.curso-grid{grid-template-columns:1fr;}}
+  .curso-list{display:flex;flex-direction:column;gap:14px;}
+  .curso-list li{list-style:none;font-size:15px;color:var(--text);display:flex;gap:12px;align-items:flex-start;}
+  .curso-list li::before{content:'';width:6px;height:6px;background:var(--cyan);margin-top:8px;flex-shrink:0;}
+  .curso-list li span{color:var(--text-dim);}
+  .curso-actions{display:flex;flex-direction:column;justify-content:center;gap:14px;}
+  .curso-actions .btn-primary{width:100%;justify-content:center;}
+  .curso-actions p{font-size:13px;color:var(--text-faint);text-align:center;}
+
+  .curso-desc{margin-top:32px;font-size:15.5px;color:var(--text-dim);max-width:640px;line-height:1.65;}
+  .curso-desc strong{color:var(--text);font-weight:600;}
+
+  .curso-video-row{
+    margin-top:32px;display:grid;grid-template-columns:340px 1fr;gap:32px;align-items:start;
+  }
+  @media(max-width:700px){.curso-video-row{grid-template-columns:1fr;}}
+  .curso-video{
+    max-width:340px;aspect-ratio:16/9;
+    background:#000;border:1px solid var(--border);overflow:hidden;
+  }
+  .curso-video iframe{width:100%;height:100%;display:block;border:0;}
+  .curso-video-caption{
+    margin-top:10px;font-size:12px;color:var(--text-faint);
+    text-transform:uppercase;letter-spacing:0.5px;max-width:340px;
+  }
+  .curso-video-text{font-size:15.5px;color:var(--text-dim);line-height:1.65;margin-top:0;}
+  .curso-video-text strong{color:var(--text);font-weight:600;}
+
+  .curso-trust{
+    margin:20px auto 0;display:grid;grid-template-columns:1fr 1fr;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    max-width:340px;
+  }
+  .curso-trust .cell{
+    padding:16px 12px;text-align:center;border-left:1px solid var(--border);
+  }
+  .curso-trust .cell:first-child{border-left:0;}
+  .curso-trust .num{
+    font-family:var(--display);font-weight:900;font-size:22px;
+    color:var(--cyan);display:flex;align-items:center;justify-content:center;gap:6px;
+  }
+  .curso-trust .stars{color:#F5C542;font-size:0.6em;letter-spacing:1px;}
+  .curso-trust .lbl{
+    font-size:10.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;
+    margin-top:4px;font-weight:500;
+  }
+  .curso-guarantee{
+    margin:14px auto 0;text-align:center;font-size:11px;color:var(--text-faint);
+    display:flex;align-items:center;justify-content:center;gap:5px;max-width:340px;
+    white-space:nowrap;
+  }
+
+  /* TABS testimonios */
+  .tabs{margin-top:56px;}
+  .tab-buttons{display:flex;gap:0;border-bottom:1px solid var(--border);}
+  .tab-btn{
+    font-size:13px;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;
+    padding:14px 22px;color:var(--text-faint);border-bottom:2px solid transparent;
+    margin-bottom:-1px;cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;
+    font-family:var(--body);
+  }
+  .tab-btn.active{color:var(--text);border-bottom-color:var(--cyan);}
+  .tab-panel{display:none;padding-top:32px;}
+  .tab-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media(max-width:700px){.tab-panel.active{grid-template-columns:1fr;}}
+  .testi{border:1px solid var(--border);padding:24px;}
+  .testi p{font-size:14px;color:var(--text-dim);line-height:1.6;margin-bottom:16px;}
+  .testi .who{font-size:12.5px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-faint);font-weight:600;}
+  .testi .who span{color:var(--cyan);}
+
+  /* NEWSLETTER — bloque destacado full width */
+  .newsletter-section{text-align:center;}
+  .newsletter-section h2{max-width:600px;margin:0 auto;}
+  .newsletter-section .sec-sub{margin-left:auto;margin-right:auto;max-width:580px;}
+  .nl-form{
+    margin:36px auto 0;display:flex;gap:10px;max-width:440px;flex-wrap:wrap;justify-content:center;
+  }
+  .nl-form input{
+    flex:1;min-width:220px;background:transparent;border:1px solid var(--border);
+    padding:16px 18px;color:var(--text);font-family:var(--body);font-size:14px;
+  }
+  .nl-form input:focus{outline:none;border-color:var(--cyan);}
+  .nl-form .btn-primary{white-space:nowrap;}
+
+  /* COMUNIDAD + RECURSOS — two up, compacto */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+  @media(max-width:700px){.twocol{grid-template-columns:1fr;}}
+  .twocol-inner{padding:0;border-bottom:1px solid var(--border);}
+  .panel{background:var(--bg);padding:44px;}
+  .panel .status{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.5px;color:var(--text-faint);
+    text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px;
+  }
+  .panel .status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--text-faint);}
+  .panel .status.live{color:var(--cyan);}
+  .panel .status.live::before{background:var(--cyan);}
+  .panel h3{font-family:var(--display);font-weight:800;font-size:26px;text-transform:uppercase;margin-bottom:12px;}
+  .panel p{color:var(--text-dim);font-size:15.5px;line-height:1.6;margin-bottom:24px;}
+
+  /* AUTORIDAD / QUIÉN SOY */
+  .autoridad-section{padding:80px 0;}
+  .autoridad-grid{display:grid;grid-template-columns:180px 1fr;gap:44px;align-items:start;}
+  @media(max-width:700px){.autoridad-grid{grid-template-columns:1fr;text-align:left;}}
+  .bio-photo{
+    width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:center 20%;
+    border:1px solid var(--border);background:var(--bg-panel);
+    display:block;
+  }
+  .cred-list{display:flex;flex-direction:column;gap:0;min-width:180px;margin-top:24px;}
+  .cred-list .item{font-family:var(--mono);font-size:12.5px;color:var(--text-dim);padding:10px 0;border-bottom:1px solid var(--border);}
+  .cred-list .item:first-child{padding-top:0;}
+  .autoridad-text p{color:var(--text-dim);font-size:16px;max-width:580px;line-height:1.7;margin-bottom:16px;}
+  .autoridad-text .sig{font-family:var(--mono);color:var(--cyan);font-size:13px;margin-top:14px;}
+
+  /* STATS STRIP */
+  .stats-strip{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  }
+  @media(max-width:700px){.stats-strip{grid-template-columns:1fr;}}
+  .stat-cell{background:var(--bg);padding:36px 24px;text-align:center;}
+  .stat-cell .num{font-family:var(--display);font-weight:900;font-size:clamp(30px,4vw,44px);color:var(--cyan);}
+  .stat-cell .lbl{font-size:13px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:6px;font-weight:500;}
+
+  /* CTA FINAL */
+  .cta-final{text-align:center;padding:100px 0;}
+  .cta-final h2{max-width:700px;margin:0 auto;font-size:clamp(32px,5vw,54px);}
+  .cta-final .sec-sub{margin-left:auto;margin-right:auto;}
+  .cta-final .hero-ctas{margin-top:36px;}
+
+  /* CONTACTO */
+  .contact-grid{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+  @media(max-width:700px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{background:var(--bg);padding:36px;}
+  .contact-card .tag{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;font-weight:600;}
+  .contact-card h3{font-family:var(--display);font-weight:800;font-size:21px;text-transform:uppercase;margin-bottom:10px;}
+  .contact-card p{color:var(--text-dim);font-size:15px;margin-bottom:20px;}
+  .link-arrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--text);padding-bottom:3px;}
+
+  /* FOOTER */
+  footer{padding:40px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-links{display:flex;gap:22px;font-size:12.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;}
+  .footer-sig{font-family:var(--display);font-weight:800;color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:0.5px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">JYTS</div>
+    <div class="navlinks">
+      <a href="#curso">Curso</a>
+      <a href="#quien-soy">Quién soy</a>
+      <a href="#comunidad">Comunidad</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#newsletter" class="nav-cta">Newsletter</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Data Scientist | PhD | Profesor | Divulgador</div>
+    <h1><span class="accent">¿Data Scientist?</span><br>Aquí lo tienes todo.</h1>
+    <p class="hero-sub">+6 años de experiencia en banca, condensados para que pases de cero a senior: los atajos y lecciones que a mí me habría encantado tener.</p>
+    <div class="hero-ctas">
+      <a href="#curso" class="btn-primary">Ver el curso →</a>
+      <a href="#newsletter" class="btn-outline">Newsletter</a>
+    </div>
+  </div>
+</header>
+
+<!-- VIDEO — quién soy en 2 min -->
+<section class="video-section">
+  <div class="wrap">
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0&modestbranding=1" title="Quién es JYTS" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="video-caption">Quién soy, qué hago y qué ofrezco — en 2 minutos</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-cell">
+    <div class="num">+350</div>
+    <div class="lbl">Alumnos formados</div>
+  </div>
+  <div class="stat-cell">
+    <div class="num">+50K</div>
+    <div class="lbl">Comunidad en redes</div>
+  </div>
+  <div class="stat-cell">
+    <div class="num">+6 años</div>
+    <div class="lbl">En banca y finanzas</div>
+  </div>
+</div>
+
+<!-- CURSO — bloque principal -->
+<section class="curso-section" id="curso">
+  <div class="wrap">
+    <div class="curso-top">
+      <div>
+        <div class="badge">SEGUNDA OLEADA · PLAZAS LIMITADAS</div>
+        <h2>De 0 a data scientist</h2>
+      </div>
+      <div class="curso-price-tag">
+        <div class="price-num">297€</div>
+        <div class="price-note">Precio de lanzamiento</div>
+      </div>
+    </div>
+
+    <div class="curso-grid">
+      <ul class="curso-list">
+        <li>+20 horas de vídeo <span>— Python, Estadística, ML y Negocio</span></li>
+        <li>Proyecto final de riesgo de crédito para tu portfolio</li>
+        <li>Certificado de finalización</li>
+      </ul>
+      <div class="curso-actions">
+        <a href="#" class="btn-primary">Apuntarme al curso →</a>
+        <p>Plazas limitadas — próximos cursos vía newsletter</p>
+      </div>
+    </div>
+
+    <p class="curso-desc">Pasa de 0 a Data Scientist aportando <strong>valor real desde el primer día</strong>.</p>
+
+    <div class="curso-video-row">
+      <div>
+        <div class="curso-video">
+          <iframe src="https://www.youtube.com/embed/5wpqDZ_DkeE" title="Introducción al curso" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="curso-video-caption">Te cuento de qué va el curso en 5 minutos</p>
+      </div>
+      <div>
+        <p class="curso-video-text">Más de <strong>20 horas de vídeo</strong>, materiales exclusivos y prácticas diseñadas para tu portfolio — <strong>Python, Machine Learning y Negocio</strong>, con el enfoque de la industria, no de un tutorial.</p>
+
+        <div class="curso-trust">
+          <div class="cell">
+            <div class="num">4.9 <span class="stars">★★★★★</span></div>
+            <div class="lbl">Valoración media</div>
+          </div>
+          <div class="cell">
+            <div class="num">100%</div>
+            <div class="lbl">Acceso total de por vida</div>
+          </div>
+        </div>
+        <div class="curso-guarantee">🛡️ Pago seguro · Garantía de devolución de 15 días</div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="showTab('detalle')">Detalle</button>
+        <button class="tab-btn" onclick="showTab('testimonios')">Testimonios</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-detalle" style="display:grid;">
+        <div>
+          <ul class="curso-list">
+            <li>Python desde cero <span>— sin dar nada por sabido</span></li>
+            <li>Fundamentos de Probabilidad y Estadística</li>
+            <li>Visualización de datos</li>
+            <li>Modelización: todos los modelos y herramientas para resolver cualquier proyecto real</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="curso-list">
+            <li>Proyectos prácticos para asentar cada concepto de verdad</li>
+            <li>Proyecto final de riesgo de crédito <span>— arranca tu portfolio con algo que demuestra valor real</span></li>
+            <li>Problemas reales y cómo piensa un senior para resolverlos</li>
+            <li>Certificado de finalización</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-testimonios">
+        <div class="testi">
+          <p>"El enfoque práctico me hizo entender en semanas lo que no había logrado en meses de tutoriales sueltos. Ahora tengo un portfolio real que enseñar."</p>
+          <div class="who">Alumno · <span>Primera Oleada</span></div>
+        </div>
+        <div class="testi">
+          <p>"Se nota la diferencia de alguien que ha estado dentro de banca de verdad. No es teoría de manual, es criterio aplicado."</p>
+          <div class="who">Alumna · <span>Primera Oleada</span></div>
+        </div>
+        <div class="testi">
+          <p>"Lo que más valoro es que no rebaja el nivel técnico. Aprendes a defender decisiones, no solo a ejecutar código."</p>
+          <div class="who">Alumno · <span>Primera Oleada</span></div>
+        </div>
+        <div class="testi">
+          <p>"Pasé de sentirme junior a poder discutir arquitectura con seniors de mi equipo. El salto fue real."</p>
+          <div class="who">Alumna · <span>Primera Oleada</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function showTab(name){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>{p.classList.remove('active');p.style.display='none';});
+  event.target.classList.add('active');
+  const panel = document.getElementById('tab-'+name);
+  panel.classList.add('active');
+  panel.style.display='grid';
+}
+</script>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section" id="newsletter">
+  <div class="wrap">
+    <div class="eyebrow-sm" style="font-size:18px;letter-spacing:1px;">Newsletter</div>
+    <h2 style="white-space:nowrap;font-size:clamp(22px,7.5vw,48px);">Todo señal, cero ruido.</h2>
+    <p class="sec-sub">Cada semana: un proyecto real, conceptos de estadística y ML, reflexiones, consejos para tu carrera, análisis de datos, noticias y actualidad, avisos importantes de la comunidad y mucho más.</p>
+    <form class="nl-form">
+      <input type="email" placeholder="tu@email.com" required>
+      <button type="submit" class="btn-primary">Suscribirme →</button>
+    </form>
+  </div>
+</section>
+
+<!-- COMUNIDAD + RECURSOS -->
+<section style="padding:0;" id="comunidad">
+  <div class="twocol">
+    <div class="panel">
+      <div class="status">Próximamente · Septiembre</div>
+      <h3>Comunidad</h3>
+      <p>Comunidad, proyectos, biblioteca ampliada, cursos específicos, oportunidades laborales, boletín semanal y sesión en vivo mensual.</p>
+      <a href="#newsletter" class="link-arrow">Unirme a la waitlist</a>
+    </div>
+    <div class="panel" id="recursos">
+      <div class="status live">Activo</div>
+      <h3>Recursos gratis</h3>
+      <p>Código, datasets, modelos predictivos completos, mindmaps, hojas de ruta y mucho más para empezar a practicar y hacerte una idea real de tu camino en Ciencia de Datos.</p>
+      <a href="#" class="link-arrow">Ver en GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉN SOY -->
+<section class="autoridad-section" id="quien-soy">
+  <div class="wrap">
+    <div class="eyebrow-sm">Quién soy</div>
+    <div class="autoridad-grid" style="margin-top:24px;">
+      <div>
+        <img src="jyts_foto.jpeg" alt="Foto de JYTS" class="bio-photo">
+      </div>
+      <div class="autoridad-text">
+        <p>Data Scientist con +6 años de experiencia en banca, PhD en estadística y profesor universitario. Me define una pasión profunda por el Data Science y por transmitir este conocimiento de manera práctica y efectiva.</p>
+        <p>Mi trayectoria combina el rigor del mundo académico con el pragmatismo del mundo financiero, lo que me permite enseñar no solo la técnica, sino la visión estratégica en proyectos reales que te hace diferencial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2 style="font-size:clamp(19px,5.8vw,54px);letter-spacing:0;">Tu camino a <span style="color:var(--cyan);">Data Scientist</span><br>empieza hoy.</h2>
+    <p class="sec-sub" style="max-width:400px;">El curso, los materiales y la comunidad están aquí.<br>Lo único que falta eres tú.</p>
+    <div class="hero-ctas">
+      <a href="#curso" class="btn-primary">Empezar el curso →</a>
+      <a href="#newsletter" class="btn-outline">Recibir la newsletter</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="eyebrow-sm">Contacto</div>
+    <h2>Dos puertas. Entra por la tuya.</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="tag">Alumnos</div>
+        <h3>Preguntas, proyectos, consejos...</h3>
+        <p>Acceso, plazas, consejos, dudas — lo que necesites.</p>
+        <a href="#" class="link-arrow">Escribir</a>
+      </div>
+      <div class="contact-card">
+        <div class="tag">Marcas</div>
+        <h3>Colaboraciones</h3>
+        <p>Patrocinios y partnerships con alcance y presupuesto.</p>
+        <a href="#" class="link-arrow">Enviar propuesta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">GitHub</a>
+    </div>
+    <div class="footer-sig">Jorge C. Rella</div>
+  </div>
+</footer>
+
+</body>
+</html>
