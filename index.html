@@ -181,10 +181,11 @@
   .tab-btn.active{color:var(--text);border-bottom-color:var(--cyan);}
   .tab-panel{display:none;padding-top:32px;}
   .tab-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .tab-panel.active.testi-grid{grid-template-columns:1fr 1fr 1fr;}
   @media(max-width:700px){.tab-panel.active{grid-template-columns:1fr;}}
   .testi{border:1px solid var(--border);padding:24px;}
   .testi p{font-size:14px;color:var(--text-dim);line-height:1.6;margin-bottom:16px;}
-  .testi .who{font-size:12.5px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-faint);font-weight:600;}
+  .testi .who{font-size:11px;text-transform:uppercase;letter-spacing:0.3px;color:var(--text-faint);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .testi .who span{color:var(--cyan);}
 
   /* NEWSLETTER — bloque destacado full width */
@@ -381,7 +382,7 @@
           </div>
           <div class="cell">
             <div class="num">100%</div>
-            <div class="lbl">Acceso total de por vida</div>
+            <div class="lbl">Acceso de por vida</div>
           </div>
         </div>
         <div class="curso-guarantee">🛡️ Pago seguro · Garantía de devolución de 15 días</div>
@@ -413,22 +414,18 @@
         </div>
       </div>
 
-      <div class="tab-panel" id="tab-testimonios">
+      <div class="tab-panel testi-grid" id="tab-testimonios">
         <div class="testi">
-          <p>"El enfoque práctico me hizo entender en semanas lo que no había logrado en meses de tutoriales sueltos. Ahora tengo un portfolio real que enseñar."</p>
-          <div class="who">Alumno · <span>Primera Oleada</span></div>
+          <p>"Miraba vídeos de YouTube pero me sentía perdido. Este curso me ayudó a tener un mapa claro de la ciencia de datos y a pensar con lógica."</p>
+          <div class="who">Emilio - <span>Finanzas Cuantitativas</span></div>
         </div>
         <div class="testi">
-          <p>"Se nota la diferencia de alguien que ha estado dentro de banca de verdad. No es teoría de manual, es criterio aplicado."</p>
-          <div class="who">Alumna · <span>Primera Oleada</span></div>
+          <p>"El curso es espectacular. Enseña las ideas básicas de programación y ciencia de datos de forma concisa y práctica, ayudándome a entender los distintos problemas y modelos. Lo recomiendo 100%."</p>
+          <div class="who">Andrés · <span>Estudiante de Ciencia de Datos</span></div>
         </div>
         <div class="testi">
-          <p>"Lo que más valoro es que no rebaja el nivel técnico. Aprendes a defender decisiones, no solo a ejecutar código."</p>
-          <div class="who">Alumno · <span>Primera Oleada</span></div>
-        </div>
-        <div class="testi">
-          <p>"Pasé de sentirme junior a poder discutir arquitectura con seniors de mi equipo. El salto fue real."</p>
-          <div class="who">Alumna · <span>Primera Oleada</span></div>
+          <p>"Hice el curso porque quería aprender de alguien que trabajase en el sector y me dio más confianza que también sea profesor universitario. Te da todas las herramientas para empezar en ciencia de datos."</p>
+          <div class="who">Alumno · <span>Ingeniero informático</span></div>
         </div>
       </div>
     </div>
@@ -465,13 +462,13 @@ function showTab(name){
       <div class="status">Próximamente · Septiembre</div>
       <h3>Comunidad</h3>
       <p>Comunidad, proyectos, biblioteca ampliada, cursos específicos, oportunidades laborales, boletín semanal y sesión en vivo mensual.</p>
-      <a href="#newsletter" class="link-arrow">Unirme a la waitlist</a>
+      <a href="#newsletter" class="link-arrow">Stay tuned en la newsletter</a>
     </div>
     <div class="panel" id="recursos">
       <div class="status live">Activo</div>
       <h3>Recursos gratis</h3>
       <p>Código, datasets, modelos predictivos completos, mindmaps, hojas de ruta y mucho más para empezar a practicar y hacerte una idea real de tu camino en Ciencia de Datos.</p>
-      <a href="#" class="link-arrow">Ver en GitHub</a>
+      <a href="https://github.com/jytsss" target="_blank" rel="noopener" class="link-arrow">Ver en GitHub</a>
     </div>
   </div>
 </section>
@@ -498,7 +495,7 @@ function showTab(name){
     <h2 style="font-size:clamp(19px,5.8vw,54px);letter-spacing:0;">Tu camino a <span style="color:var(--cyan);">Data Scientist</span><br>empieza hoy.</h2>
     <p class="sec-sub" style="max-width:400px;">El curso, los materiales y la comunidad están aquí.<br>Lo único que falta eres tú.</p>
     <div class="hero-ctas">
-      <a href="#curso" class="btn-primary">Empezar el curso →</a>
+      <a href="https://jyts-ds.hotmart.host/de-0-a-ds-python-machine-learning-y-negocio" class="btn-primary" target="_blank" rel="noopener">Empezar el curso →</a>
       <a href="#newsletter" class="btn-outline">Recibir la newsletter</a>
     </div>
   </div>
@@ -514,13 +511,13 @@ function showTab(name){
         <div class="tag">Alumnos</div>
         <h3>Preguntas, proyectos, consejos...</h3>
         <p>Acceso, plazas, consejos, dudas — lo que necesites.</p>
-        <a href="#" class="link-arrow">Escribir</a>
+        <a href="mailto:jyts.ds@gmail.com?subject=Consulta%20sobre%20el%20curso&body=Hola%20JYTS%2C%0A%0ATengo%20una%20consulta%20sobre%3A%0A" class="link-arrow">Escribir</a>
       </div>
       <div class="contact-card">
         <div class="tag">Marcas</div>
         <h3>Colaboraciones</h3>
         <p>Patrocinios y partnerships con alcance y presupuesto.</p>
-        <a href="#" class="link-arrow">Enviar propuesta</a>
+        <a href="mailto:jyts.ds@gmail.com?subject=Propuesta%20de%20colaboraci%C3%B3n&body=Hola%20JYTS%2C%0A%0ATe%20escribo%20desde%20%5Bmarca%2Fempresa%5D%20para%20proponerte%20una%20colaboraci%C3%B3n.%0A%0AAlcance%2Fpresupuesto%20estimado%3A%0A" class="link-arrow">Enviar propuesta</a>
       </div>
     </div>
   </div>
