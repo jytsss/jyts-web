@@ -45,9 +45,9 @@
   .navlinks a:hover{color:var(--text);}
   .nav-cta{
     font-size:13px;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;
-    border:1px solid var(--text);padding:10px 20px;
+    background:var(--cyan);color:#0A0A0A;border:1px solid var(--cyan);padding:10px 20px;
   }
-  .nav-cta:hover{background:var(--text);color:var(--bg);}
+  .nav-cta:hover{opacity:0.85;}
   @media(max-width:760px){.navlinks{display:none;}}
 
   /* HERO */
@@ -105,7 +105,7 @@
   }
   .sec-sub{color:var(--text-dim);margin-top:16px;max-width:520px;font-size:16.5px;line-height:1.65;}
 
-  /* CURSO — bloque principal */
+  /* CURSO / COMUNIDAD — bloques principales (misma base visual) */
   .curso-section{background:var(--bg-panel);}
   .curso-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;}
   .badge{
@@ -188,7 +188,7 @@
   .testi .who{font-size:11px;text-transform:uppercase;letter-spacing:0.3px;color:var(--text-faint);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .testi .who span{color:var(--cyan);}
 
-  /* NEWSLETTER — bloque destacado full width */
+  /* NEWSLETTER — bloque de menor prioridad, compacto */
   .newsletter-section{text-align:center;}
   .newsletter-section h2{max-width:600px;margin:0 auto;}
   .newsletter-section .sec-sub{margin-left:auto;margin-right:auto;max-width:580px;}
@@ -202,7 +202,7 @@
   .nl-form input:focus{outline:none;border-color:var(--cyan);}
   .nl-form .btn-primary{white-space:nowrap;}
   .nl-embed{
-    margin:36px auto 0;max-width:480px;
+    margin:28px auto 0;max-width:440px;
     border-radius:6px;overflow:hidden;
   }
   .nl-embed iframe{
@@ -213,11 +213,8 @@
     .nl-embed iframe{height:180px;}
   }
 
-  /* COMUNIDAD + RECURSOS — two up, compacto */
-  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
-  @media(max-width:700px){.twocol{grid-template-columns:1fr;}}
-  .twocol-inner{padding:0;border-bottom:1px solid var(--border);}
-  .panel{background:var(--bg);padding:44px;}
+  /* RECURSOS — panel suelto */
+  .panel{background:var(--bg);padding:0;max-width:600px;}
   .panel .status{
     font-family:var(--mono);font-size:12px;letter-spacing:0.5px;color:var(--text-faint);
     text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px;
@@ -290,11 +287,11 @@
     <div class="navlinks">
       <a href="#curso">Curso</a>
       <a href="#quien-soy">Quién soy</a>
-      <a href="#comunidad">Comunidad</a>
+      <a href="#newsletter">Newsletter</a>
       <a href="#recursos">Recursos</a>
       <a href="#contacto">Contacto</a>
     </div>
-    <a href="#newsletter" class="nav-cta">Newsletter</a>
+    <a href="#comunidad" class="nav-cta">Comunidad</a>
   </div>
 </nav>
 
@@ -304,8 +301,8 @@
     <h1><span class="accent">¿Data Scientist?</span><br>Aquí lo tienes todo.</h1>
     <p class="hero-sub">+6 años de experiencia en banca, condensados para que pases de cero a senior: los atajos y lecciones que a mí me habría encantado tener.</p>
     <div class="hero-ctas">
-      <a href="#curso" class="btn-primary">Ver el curso →</a>
-      <a href="#newsletter" class="btn-outline">Newsletter</a>
+      <a href="https://www.skool.com/outliers-in-data/about" class="btn-primary" target="_blank" rel="noopener">Unirme a la comunidad →</a>
+      <a href="#curso" class="btn-outline">Ver el curso</a>
     </div>
   </div>
 </header>
@@ -328,7 +325,7 @@
   </div>
   <div class="stat-cell">
     <div class="num">+50K</div>
-    <div class="lbl">Comunidad en redes</div>
+    <div class="lbl">Seguidores en redes</div>
   </div>
   <div class="stat-cell">
     <div class="num">+6 años</div>
@@ -336,7 +333,48 @@
   </div>
 </div>
 
-<!-- CURSO — bloque principal -->
+<!-- COMUNIDAD — bloque principal, máxima prioridad -->
+<section class="curso-section" id="comunidad" style="border-top:3px solid var(--cyan);">
+  <div class="wrap">
+    <div class="curso-top">
+      <div>
+        <div class="badge" style="background:var(--cyan);color:var(--bg);">OUTLIERS IN DATA · COMUNIDAD</div>
+        <h2>Outliers in Data</h2>
+      </div>
+      <div class="curso-price-tag">
+        <div class="price-num">16€<span style="font-size:0.42em;">/mes</span></div>
+        <div class="price-note">Cancela cuando quieras</div>
+      </div>
+    </div>
+
+    <div class="curso-grid">
+      <ul class="curso-list">
+        <li>Curso(s) grabados <span>— incluidos con tu membresía</span></li>
+        <li>Biblioteca de recursos ampliada <span>— código, datasets y plantillas</span></li>
+        <li>Sesión en vivo mensual <span>— Q&A y revisión de proyectos</span></li>
+      </ul>
+      <div class="curso-actions">
+        <a href="https://www.skool.com/outliers-in-data/about" class="btn-primary" target="_blank" rel="noopener">Unirme a la comunidad →</a>
+        <p>Acceso inmediato en Skool</p>
+      </div>
+    </div>
+
+    <p class="curso-desc">Aquí no vienes a acumular contenido guardado sin ver. Vienes a construir <strong>criterio real</strong>, semana a semana, con feedback directo y gente que va en serio.</p>
+
+    <div class="curso-grid" style="margin-top:16px;">
+      <ul class="curso-list">
+        <li>Sección de oportunidades <span>— empleo, proyectos y networking</span></li>
+        <li>Boletín semanal <span>— noticias y análisis dentro de la comunidad</span></li>
+      </ul>
+      <ul class="curso-list">
+        <li>Feedback de proyectos <span>— sube el tuyo y recibe crítica real</span></li>
+        <li>Acceso directo a mí y al resto de la comunidad</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CURSO — segunda prioridad -->
 <section class="curso-section" id="curso">
   <div class="wrap">
     <div class="curso-top">
@@ -442,28 +480,10 @@ function showTab(name){
 }
 </script>
 
-<!-- NEWSLETTER -->
-<section class="newsletter-section" id="newsletter">
+<!-- RECURSOS -->
+<section id="recursos">
   <div class="wrap">
-    <div class="eyebrow-sm" style="font-size:18px;letter-spacing:1px;">Newsletter</div>
-    <h2 style="white-space:nowrap;font-size:clamp(22px,7.5vw,48px);">Todo señal, cero ruido.</h2>
-    <p class="sec-sub">Cada semana: un proyecto real, conceptos de estadística y ML, reflexiones, consejos para tu carrera, análisis de datos, noticias y actualidad, avisos importantes de la comunidad y mucho más.</p>
-    <div class="nl-embed">
-      <iframe src="https://newsjyts.substack.com/embed" title="Suscripción newsletter JYTS" scrolling="no"></iframe>
-    </div>
-  </div>
-</section>
-
-<!-- COMUNIDAD + RECURSOS -->
-<section style="padding:0;" id="comunidad">
-  <div class="twocol">
     <div class="panel">
-      <div class="status">Próximamente · Septiembre</div>
-      <h3>Comunidad</h3>
-      <p>Comunidad, proyectos, biblioteca ampliada, cursos específicos, oportunidades laborales, boletín semanal y sesión en vivo mensual.</p>
-      <a href="#newsletter" class="link-arrow">Stay tuned en la newsletter</a>
-    </div>
-    <div class="panel" id="recursos">
       <div class="status live">Activo</div>
       <h3>Recursos gratis</h3>
       <p>Código, datasets, modelos predictivos completos, mindmaps, hojas de ruta y mucho más para empezar a practicar y hacerte una idea real de tu camino en Ciencia de Datos.</p>
@@ -488,14 +508,26 @@ function showTab(name){
   </div>
 </section>
 
+<!-- NEWSLETTER — menor prioridad, bloque reducido -->
+<section class="newsletter-section" id="newsletter" style="padding:48px 0;">
+  <div class="wrap">
+    <div class="eyebrow-sm">Newsletter</div>
+    <h2 style="font-size:clamp(20px,3.5vw,26px);">Todo señal, cero ruido.</h2>
+    <p class="sec-sub" style="font-size:14.5px;">Cada semana, un email con un proyecto real, estadística, ML y lo importante de la comunidad. Cero ruido.</p>
+    <div class="nl-embed">
+      <iframe src="https://newsjyts.substack.com/embed" title="Suscripción newsletter JYTS" scrolling="no"></iframe>
+    </div>
+  </div>
+</section>
+
 <!-- CTA FINAL -->
 <section class="cta-final">
   <div class="wrap">
     <h2 style="font-size:clamp(19px,5.8vw,54px);letter-spacing:0;">Tu camino a <span style="color:var(--cyan);">Data Scientist</span><br>empieza hoy.</h2>
-    <p class="sec-sub" style="max-width:400px;">El curso, los materiales y la comunidad están aquí.<br>Lo único que falta eres tú.</p>
+    <p class="sec-sub" style="max-width:400px;">La comunidad, el curso y los materiales están aquí.<br>Lo único que falta eres tú.</p>
     <div class="hero-ctas">
-      <a href="https://jyts-ds.hotmart.host/de-0-a-ds-python-machine-learning-y-negocio" class="btn-primary" target="_blank" rel="noopener">Empezar el curso →</a>
-      <a href="#newsletter" class="btn-outline">Recibir la newsletter</a>
+      <a href="https://www.skool.com/outliers-in-data/about" class="btn-primary" target="_blank" rel="noopener">Unirme a la comunidad →</a>
+      <a href="https://jyts-ds.hotmart.host/de-0-a-ds-python-machine-learning-y-negocio" class="btn-outline" target="_blank" rel="noopener">Empezar el curso</a>
     </div>
   </div>
 </section>
